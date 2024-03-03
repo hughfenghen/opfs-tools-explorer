@@ -52,7 +52,7 @@ export const CustomNode: React.FC<Props> = (props) => {
       <div
         className={styles.labelGridItem}
         onClick={(evt) => {
-          if (props.node.kind === 'file') {
+          if (props.node.data.kind === 'file') {
             evt.stopPropagation();
             evt.preventDefault();
             props.onPreview(props.node);

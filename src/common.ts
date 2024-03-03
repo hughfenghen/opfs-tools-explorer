@@ -20,11 +20,11 @@ type FSItem = ReturnType<typeof dir> | ReturnType<typeof file>;
 export function fsItem2TreeNode(it: FSItem) {
   return {
     id: it.path,
-    parent: it.parent?.path,
+    parent: it.parent?.path ?? '',
     droppable: it.kind === 'dir',
-    kind: it.kind,
     text: it.name,
     data: {
+      kind: it.kind,
       fileType: detectFileType(it.path),
       fileSize: '0KB',
     },
@@ -35,8 +35,8 @@ export async function dirTree(it: FSItem): Promise<Array<FSItem>> {
   if (it.kind === 'file') return [it];
   return (await it.children()).reduce(
     async (acc, cur) => [...(await acc), ...(await dirTree(cur))],
-    Promise.resolve([it])
-  );
+    Promise.resolve([it]) as Promise<FSItem[]>
+  )
 }
 
 export const treeDataAtom = atom<NodeModel<CustomData>[]>([]);

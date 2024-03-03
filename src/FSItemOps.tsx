@@ -54,6 +54,7 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
     const deleteIds = getDescendants(treeData, id).map((node) => node.id);
 
     const opNode = treeData.find((it) => it.id === id);
+    if (opNode == null) return
     // 删除垃圾筐操作，是清空垃圾筐，垃圾筐本身不能删除
     if (id !== '/.Trush') deleteIds.push(id);
 
@@ -63,9 +64,9 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
         async (it) => await it.remove()
       );
     } else if (id.startsWith('/.Trush/')) {
-      await (opNode.kind === 'dir' ? dir : file)(id).remove();
+      await (opNode.data.kind === 'dir' ? dir : file)(id).remove();
       onChange?.('delete', null);
-    } else if (opNode.kind === 'dir') {
+    } else if (opNode.data.kind === 'dir') {
       const newDir = await dir(id).moveTo(dir('/.Trush'));
       newData.push(...(await dirTree(newDir)).map((it) => fsItem2TreeNode(it)));
     } else {
@@ -86,6 +87,8 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
   const handleCopy = async () => {
     const lastId = getLastId(treeData);
     const targetNode = treeData.find((n) => n.id === id);
+    if (targetNode == null) return
+    
     const descendants = getDescendants(treeData, id);
     const partialTree = descendants.map((node: NodeModel<CustomData>) => ({
       ...node,
@@ -114,10 +117,10 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
     const newNode = {
       ...targetNode,
       text: newName,
-      id: joinPath(targetNode.parent, newName),
+      id: joinPath((targetNode.parent), newName),
     };
     const childrenNodes = [];
-    if (targetNode.kind === 'dir') {
+    if (targetNode.data.kind === 'dir') {
       const copyedDir = await dir(id).copyTo(dir(newNode.id));
 
       childrenNodes.push(
@@ -143,7 +146,7 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
           <FileCopy fontSize="small" />
         </IconButton>
       </div>
-      {node.kind === 'file' && (
+      {node.data.kind === 'file' && (
         <div className={styles.actionButton}>
           <IconButton
             size="small"

@@ -1,15 +1,15 @@
 export type CustomData = {
   fileType: string;
   fileSize: string;
+  kind: 'file' | 'dir';
 };
 
 export type NodeModel<T = unknown> = {
   id: string;
-  parent: string | null;
-  droppable?: boolean;
-  kind: 'file' | 'dir';
+  parent: string;
+  droppable: boolean;
   text: string;
-  data?: T;
+  data: T;
 };
 
 export type DropOptions<T = unknown> = {

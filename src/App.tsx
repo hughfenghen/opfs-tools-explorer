@@ -51,10 +51,11 @@ function App() {
   const [openAddDialog, setOpenAddDialog] = useState<boolean>(false);
 
   const handleDrop = async (
-    _: NodeModel<CustomData>[],
     changeData: DropOptions<CustomData>
   ) => {
-    const newDir = await (changeData.dragSource.kind === 'dir' ? dir : file)(
+    if (changeData.dragSource == null) return
+
+    const newDir = await (changeData.dragSource.data.kind === 'dir' ? dir : file)(
       changeData.dragSourceId
     ).moveTo(dir(changeData.dropTargetId));
     const newData = (await dirTree(newDir)).map((it) => fsItem2TreeNode(it));
@@ -96,7 +97,7 @@ function App() {
     } else if (nodeType === 'file') {
       await write(p, '');
       fsItems.push(file(p));
-    } else if (nodeType === 'import' && files?.length > 0) {
+    } else if (nodeType === 'import' && files != null) {
       await Promise.all(files.map((f) => write(f.name, f.stream())));
       fsItems.push(...files.map((f) => file(joinPath('/', f.name))));
     }
@@ -128,13 +129,15 @@ function App() {
           <Tree
             tree={treeData}
             rootId={'/'}
-            render={(node: NodeModel<CustomData>, options) => (
-              <CustomNode node={node} {...options} onPreview={setPreviewNode} />
+            render={(node, options) => (
+              <CustomNode node={node as NodeModel<CustomData>} {...options} onPreview={setPreviewNode} />
             )}
             dragPreviewRender={(
               monitorProps: DragLayerMonitorProps<CustomData>
             ) => <CustomDragPreview monitorProps={monitorProps} />}
-            onDrop={handleDrop}
+            onDrop={(_, changeData) => {
+              handleDrop(changeData as DropOptions<CustomData>)
+            }}
             classes={{
               root: styles.treeRoot,
               draggingSource: styles.draggingSource,
