@@ -93,20 +93,22 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
       parent: node.parent + lastId,
     }));
 
+    const suffix = targetNode.text.includes('.')
+      ? `.${targetNode.text.split('.').slice(-1).join('')}`
+      : '';
+    const fileName = targetNode.text.includes('.')
+      ? targetNode.text.split('.').slice(0, -1).join('')
+      : targetNode.text;
+    
     const copyedCnt = treeData.filter(
       (n) =>
         n.parent === targetNode.parent &&
-        n.text.startsWith(targetNode.text.replace(/ copy\d+$/, '') + ' copy')
+        n.id !== targetNode.id &&
+        n.text.includes(fileName.replace(/ copy\d+/, ''))
     ).length;
 
-    const suffix = targetNode.text.includes('.')
-      ? `.${targetNode.text.split('.').slice(-1)}`
-      : '';
-    const fileName = targetNode.text.includes('.')
-      ? targetNode.text.split('.').slice(0, -1)
-      : targetNode.text;
-    const newName = /copy\d+$/.test(targetNode.text)
-      ? targetNode.text.replace(/copy\d+/, String(copyedCnt + 1))
+    const newName = / copy\d+/.test(targetNode.text)
+      ? targetNode.text.replace(/ copy\d+/, ' copy' + String(copyedCnt + 1))
       : fileName + ' copy' + (copyedCnt + 1) + suffix;
 
     const newNode = {
