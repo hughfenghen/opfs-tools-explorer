@@ -56,22 +56,22 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
     const opNode = treeData.find((it) => it.id === id);
     if (opNode == null) return
     // 删除垃圾筐操作，是清空垃圾筐，垃圾筐本身不能删除
-    if (id !== '/.Trush') deleteIds.push(id);
+    if (id !== '/.Trash') deleteIds.push(id);
 
     let newData = [];
-    if (id === '/.Trush') {
-      (await dir('/.Trush').children()).forEach(
+    if (id === '/.Trash') {
+      (await dir('/.Trash').children()).forEach(
         async (it) => await it.remove()
       );
-    } else if (id.startsWith('/.Trush/')) {
+    } else if (id.startsWith('/.Trash/')) {
       await (opNode.data.kind === 'dir' ? dir : file)(id).remove();
       onChange?.('delete', null);
     } else if (opNode.data.kind === 'dir') {
-      const newDir = await dir(id).moveTo(dir('/.Trush'));
+      const newDir = await dir(id).moveTo(dir('/.Trash'));
       newData.push(...(await dirTree(newDir)).map((it) => fsItem2TreeNode(it)));
     } else {
-      const sameNameInTrush = await file('/.Trush/' + file(id).name).exists();
-      const newFile = await file(id).moveTo(dir('/.Trush'));
+      const sameNameInTrush = await file('/.Trash/' + file(id).name).exists();
+      const newFile = await file(id).moveTo(dir('/.Trash'));
       onChange?.('delete', fsItem2TreeNode(newFile));
       if (!sameNameInTrush) {
         newData.push(fsItem2TreeNode(newFile));

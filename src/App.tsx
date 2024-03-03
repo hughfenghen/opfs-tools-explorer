@@ -33,7 +33,7 @@ async function initFiles() {
   await write('/opfs-tools/dir1/file1', 'file');
   await write('/opfs-tools/dir1/file2', 'file');
   await write('/opfs-tools/dir2/file1', 'file');
-  await dir('/.Trush').create();
+  await dir('/.Trash').create();
 }
 
 async function getInitData(dirPath: string, rs: NodeModel<CustomData>[]) {
