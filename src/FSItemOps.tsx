@@ -4,11 +4,10 @@ import { Delete, FileCopy } from '@mui/icons-material';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import { CustomData, NodeModel } from './types';
 import styles from './FSItemOps.module.css';
-import { dirTree, fsItem2TreeNode, treeDataAtom } from './common';
+import { dirTree, fsItem2TreeNode, joinPath, treeDataAtom } from './common';
 import { useAtom } from 'jotai';
 import { getDescendants } from '@minoru/react-dnd-treeview';
-import { dir, file } from '../../../src';
-import { joinPath } from '../../../src/common';
+import { dir, file } from 'opfs-tools';
 
 type Props = {
   node: NodeModel<CustomData>;

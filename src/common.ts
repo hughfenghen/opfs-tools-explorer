@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 import { CustomData, NodeModel } from './types';
-import { dir, file } from '../../../src';
+import { dir, file } from 'opfs-tools';
 
 export function detectFileType(
   path: string
@@ -10,6 +10,10 @@ export function detectFileType(
   if (/\.(png|jpe?g|webp|gif|avif)$/.test(path)) return 'image';
 
   return 'text';
+}
+
+export function joinPath(p1: string, p2: string) {
+  return `${p1}/${p2}`.replace('//', '/');
 }
 
 type FSItem = ReturnType<typeof dir> | ReturnType<typeof file>;

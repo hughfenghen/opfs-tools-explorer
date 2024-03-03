@@ -16,11 +16,12 @@ import { CustomDragPreview } from './CustomDragPreview';
 import { AddDialog, NewNodeType } from './AddDialog';
 import { theme } from './theme';
 import styles from './App.module.css';
-import { file, dir, write } from '../../../src';
+import { file, dir, write } from 'opfs-tools';
 import { FilePreviewer } from './FilePreviewer';
 import {
   dirTree,
   fsItem2TreeNode,
+  joinPath,
   previewNodeAtom,
   treeDataAtom,
 } from './common';
@@ -42,10 +43,6 @@ async function getInitData(dirPath: string, rs: NodeModel<CustomData>[]) {
       await getInitData(it.path, rs);
     }
   }
-}
-
-function joinPath(p1: string, p2: string) {
-  return `${p1}/${p2}`.replace('//', '/');
 }
 
 function App() {

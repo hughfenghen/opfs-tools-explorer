@@ -3,7 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import { CustomData, NodeModel } from './types';
 import styles from './FilePreviewer.module.css';
-import { file, write } from '../../../src';
+import { file, write } from 'opfs-tools';
 import { detectFileType, previewNodeAtom } from './common';
 import { FSItemOps } from './FSItemOps';
 import { useAtom } from 'jotai';
