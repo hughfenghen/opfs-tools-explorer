@@ -1,8 +1,15 @@
 {
-  "name": "add-delete-copy-js",
+  "name": "opfs-tools-explorer",
   "version": "1.0.0",
   "description": "",
-  "keywords": [],
+  "keywords": [
+    "opfs-tools",
+    "opfs",
+    "fs",
+    "filesystem",
+    "manager",
+    "explorer"
+  ],
   "main": "src/index.js",
   "dependencies": {
     "@emotion/react": "11.9.0",
@@ -19,9 +26,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build": "vite build"
   },
   "browserslist": [
     ">0.2%",
