@@ -1,0 +1,37 @@
+.appContainer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  max-width: 1000px;
+  box-sizing: border-box;
+  background-color: #f6f6f6;
+  height: 0;
+  min-height: 0;
+  transition: min-height 0.2s, height 0.2s;
+}
+
+.showApp {
+  height: 50vh;
+  min-height: 500px;
+}
+
+.entryIcon {
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  background-image: linear-gradient(#049ad4 0%, #64c1e6 100%);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  box-shadow: 8px 8px 20px rgba(55, 99, 170, 0.1);
+}

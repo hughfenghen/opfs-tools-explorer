@@ -1,30 +1,27 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        "*": {
+        '*': {
           margin: 0,
-          padding: 0
-        },
-        "html, body, #root": {
-          height: "100%"
+          padding: 0,
         },
         ul: {
-          listStyle: "none"
-        }
-      }
+          listStyle: 'none',
+        },
+      },
     },
     MuiSvgIcon: {
       styleOverrides: {
-        root: { verticalAlign: "middle" }
-      }
+        root: { verticalAlign: 'middle' },
+      },
     },
     MuiIconButton: {
       styleOverrides: {
-        root: { color: "inherit" }
-      }
-    }
-  }
+        root: { color: 'inherit' },
+      },
+    },
+  },
 });

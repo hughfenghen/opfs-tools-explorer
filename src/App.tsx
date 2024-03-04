@@ -50,14 +50,12 @@ function App() {
   const [previewNode, setPreviewNode] = useAtom(previewNodeAtom);
   const [openAddDialog, setOpenAddDialog] = useState<boolean>(false);
 
-  const handleDrop = async (
-    changeData: DropOptions<CustomData>
-  ) => {
-    if (changeData.dragSource == null) return
+  const handleDrop = async (changeData: DropOptions<CustomData>) => {
+    if (changeData.dragSource == null) return;
 
-    const newDir = await (changeData.dragSource.data.kind === 'dir' ? dir : file)(
-      changeData.dragSourceId
-    ).moveTo(dir(changeData.dropTargetId));
+    const newDir = await (changeData.dragSource.data.kind === 'dir'
+      ? dir
+      : file)(changeData.dragSourceId).moveTo(dir(changeData.dropTargetId));
     const newData = (await dirTree(newDir)).map((it) => fsItem2TreeNode(it));
 
     const deleteIds = getDescendants(treeData, changeData.dragSource.id)
@@ -130,13 +128,17 @@ function App() {
             tree={treeData}
             rootId={'/'}
             render={(node, options) => (
-              <CustomNode node={node as NodeModel<CustomData>} {...options} onPreview={setPreviewNode} />
+              <CustomNode
+                node={node as NodeModel<CustomData>}
+                {...options}
+                onPreview={setPreviewNode}
+              />
             )}
             dragPreviewRender={(
               monitorProps: DragLayerMonitorProps<CustomData>
             ) => <CustomDragPreview monitorProps={monitorProps} />}
             onDrop={(_, changeData) => {
-              handleDrop(changeData as DropOptions<CustomData>)
+              handleDrop(changeData as DropOptions<CustomData>);
             }}
             classes={{
               root: styles.treeRoot,
