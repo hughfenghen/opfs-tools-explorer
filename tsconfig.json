@@ -16,8 +16,8 @@
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "react"
+        "jsx": "react",
+        "outDir": "dist"
     },
     "include": [
         "src"

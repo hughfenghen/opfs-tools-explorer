@@ -32,7 +32,7 @@ export const AddDialog: React.FC<Props> = (props) => {
   const [path, setPath] = useState('');
   const [nodeType, setNodeType] = useState<'file' | 'dir' | 'import'>('file');
 
-  const [files, setFiles] = React.useState([]);
+  const [files, setFiles] = React.useState<File[]>([]);
 
   const handleImpFileChange = (newFiles: File[]) => {
     setFiles(newFiles);

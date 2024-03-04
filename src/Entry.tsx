@@ -12,7 +12,7 @@ export const Entry: React.FC<{}> = () => {
   }, [iconElRef]);
 
   return (
-    <div style={{ zIndex: 1000 }}>
+    <>
       <div className={`${styles.appContainer} ${show ? styles.showApp : ''}`}>
         <App></App>
       </div>
@@ -25,7 +25,7 @@ export const Entry: React.FC<{}> = () => {
       >
         E
       </div>
-    </div>
+    </>
   );
 };
 

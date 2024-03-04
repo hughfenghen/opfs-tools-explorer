@@ -10,7 +10,12 @@
     "manager",
     "explorer"
   ],
-  "main": "src/index.js",
+  "main": "dist/opfs-tools-explorer.umd.js",
+  "module": "dist/opfs-tools-explorer.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
@@ -26,7 +31,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build && tsc -p tsconfig.json --declaration --emitDeclarationOnly",
+    "prepublishOnly": "yarn build"
   },
   "browserslist": [
     ">0.2%",
@@ -38,6 +44,7 @@
     "@types/react": "^18.2.60",
     "@types/react-dom": "^18.2.19",
     "typescript": "^5.3.3",
-    "vite": "^5.1.3"
+    "vite": "^5.1.3",
+    "vite-plugin-css-injected-by-js": "^3.4.0"
   }
 }

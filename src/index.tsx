@@ -3,9 +3,15 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import { Entry } from './Entry';
 
-export const ExplorerComponent = App;
+export const OTExplorerComp = App;
 
 export function init() {
-  const root = createRoot(document.getElementById('root') as HTMLElement);
+  const container = document.createElement('div');
+  container.style.zIndex = '10000';
+  container.style.position = 'fixed';
+  document.body.appendChild(container);
+  const root = createRoot(container);
   root.render(<Entry />);
 }
+
+init();
