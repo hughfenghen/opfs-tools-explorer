@@ -12,14 +12,35 @@
       min-height: 100vh;
       margin: 0;
     }
+
+    #add-test-file {
+      width: 250px;
+      height: 60px;
+      font-size: 30px;
+      color: #1976d2;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
   </style>
 </head>
 
 <body>
-  <div id="root"></div>
+
+  <button id="add-test-file">Add Test Files</button>
   <script type="module">
     import { init } from './src/index.tsx'
     init()
+  </script>
+  <script type="module">
+    import { write, dir } from 'opfs-tools'
+    async function initFiles() {
+      await write('/opfs-tools/dir1/file1', 'file');
+      await write('/opfs-tools/dir1/file2', 'file');
+      await write('/opfs-tools/dir2/file1', 'file');
+      await dir('/.Trash').create();
+    }
+    document.getElementById('add-test-file').addEventListener('click', initFiles);
   </script>
 </body>
 
