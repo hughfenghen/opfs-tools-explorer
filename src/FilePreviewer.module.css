@@ -14,6 +14,10 @@
   flex-direction: column;
 }
 
+.info {
+  font-weight: bold;
+}
+
 .closeIconWrap {
   position: absolute;
   top: 4px;
@@ -42,6 +46,7 @@
 @media screen and (max-width: 700px) {
   .filePreviewer {
     width: 100%;
+    box-sizing: border-box;
     border: none;
   }
   .fsOpsWrap {
