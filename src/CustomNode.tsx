@@ -49,7 +49,9 @@ export const CustomNode: React.FC<Props> = (props) => {
         <TypeIcon droppable={droppable} fileType={data?.fileType} />
       </div>
       <div
-        className={styles.labelGridItem}
+        className={`${styles.labelGridItem} ${
+          props.node.data.kind === 'file' ? styles.fileItem : ''
+        }`}
         onClick={(evt) => {
           if (props.node.data.kind === 'file') {
             evt.stopPropagation();

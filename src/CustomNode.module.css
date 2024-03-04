@@ -33,6 +33,10 @@
   white-space: nowrap;
 }
 
+.fileItem {
+  cursor: pointer;
+}
+
 .actionButton {
   padding: 0 4px;
 }

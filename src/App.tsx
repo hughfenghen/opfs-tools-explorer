@@ -3,6 +3,7 @@ import { DndProvider } from 'react-dnd';
 import { ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import {
   Tree,
   MultiBackend,
@@ -26,15 +27,6 @@ import {
   treeDataAtom,
 } from './common';
 import { useAtom } from 'jotai';
-
-async function initFiles() {
-  if ((await dir('/').children()).length > 1) return;
-
-  await write('/opfs-tools/dir1/file1', 'file');
-  await write('/opfs-tools/dir1/file2', 'file');
-  await write('/opfs-tools/dir2/file1', 'file');
-  await dir('/.Trash').create();
-}
 
 async function getInitData(dirPath: string, rs: NodeModel<CustomData>[]) {
   for (const it of await dir(dirPath).children()) {
@@ -70,13 +62,14 @@ function App() {
     setTreeData(newTree);
   };
 
+  const refreshTree = async () => {
+    const tree = [fsItem2TreeNode(dir('/'))];
+    await getInitData('/', tree);
+    setTreeData(tree);
+  };
+
   useEffect(() => {
-    (async () => {
-      await initFiles();
-      const tree = [fsItem2TreeNode(dir('/'))];
-      await getInitData('/', tree);
-      setTreeData(tree);
-    })();
+    refreshTree();
   }, []);
 
   const handleSubmit = async ({
@@ -122,6 +115,9 @@ function App() {
                 onSubmit={handleSubmit}
               />
             )}
+            <Button onClick={refreshTree} startIcon={<RefreshIcon />}>
+              Refresh
+            </Button>
           </div>
           <Tree
             tree={treeData}

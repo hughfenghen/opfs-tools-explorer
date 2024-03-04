@@ -10,11 +10,17 @@ export const theme = createTheme({
     MuiIconButton: {
       styleOverrides: {
         root: { color: 'inherit' },
+        colorPrimary: { color: '#1976d2' },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: { fontSize: '14px' },
+      },
+    },
+    MuiModal: {
+      styleOverrides: {
+        root: { zIndex: 11000 },
       },
     },
   },
