@@ -8,7 +8,7 @@ export const Entry: React.FC<{}> = () => {
 
   useEffect(() => {
     if (iconElRef.current == null) return;
-    return dragElement(iconElRef.current, document.body);
+    return dragElement(iconElRef.current);
   }, [iconElRef]);
 
   return (
@@ -29,7 +29,7 @@ export const Entry: React.FC<{}> = () => {
   );
 };
 
-function dragElement(el: HTMLElement, parent: HTMLElement): () => void {
+function dragElement(el: HTMLElement): () => void {
   // 被拖拽元素位置
   let elStartX = 0;
   let elStartY = 0;
@@ -52,16 +52,12 @@ function dragElement(el: HTMLElement, parent: HTMLElement): () => void {
     touchStartX = clientX;
     touchStartY = clientY;
 
-    const { x: px, y: py } = parent.getBoundingClientRect();
-    parentX = px;
-    parentY = py;
-
     const { x, y, width, height } = el.getBoundingClientRect();
     elStartX = x;
     elStartY = y;
 
-    maxLeft = ((parent.clientWidth - width) / parent.clientWidth) * 100;
-    maxTop = ((parent.clientHeight - height) / parent.clientHeight) * 100;
+    maxLeft = ((window.innerWidth - width) / window.innerWidth) * 100;
+    maxTop = ((window.innerHeight - height) / window.innerHeight) * 100;
   };
 
   const onMove = ({
@@ -74,9 +70,9 @@ function dragElement(el: HTMLElement, parent: HTMLElement): () => void {
     const curX = clientX;
     const curY = clientY;
     const left =
-      ((elStartX + curX - touchStartX - parentX) / parent.clientWidth) * 100;
+      ((elStartX + curX - touchStartX - parentX) / window.innerWidth) * 100;
     const top =
-      ((elStartY + curY - touchStartY - parentY) / parent.clientHeight) * 100;
+      ((elStartY + curY - touchStartY - parentY) / window.innerHeight) * 100;
     el.style.left = `${clamp(left, 0, maxLeft)}%`;
     el.style.top = `${clamp(top, 0, maxTop)}%`;
   };

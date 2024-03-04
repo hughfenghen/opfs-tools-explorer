@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
-import { ThemeProvider, CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import {
@@ -106,7 +106,6 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
       <DndProvider backend={MultiBackend} options={getBackendOptions()}>
         <div className={styles.app} onClick={() => setPreviewNode(false)}>
           <div>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Typography from '@mui/material/Typography';
 import { ArrowRight } from '@mui/icons-material';
 import { useDragOver } from '@minoru/react-dnd-treeview';
 import { NodeModel, CustomData } from './types';
@@ -59,7 +58,7 @@ export const CustomNode: React.FC<Props> = (props) => {
           }
         }}
       >
-        <Typography variant="body2">{props.node.text}</Typography>
+        {props.node.text}
       </div>
       {hover && <FSItemOps node={props.node}></FSItemOps>}
     </div>

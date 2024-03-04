@@ -14,4 +14,4 @@ export function init() {
   root.render(<Entry />);
 }
 
-init();
+// init();
