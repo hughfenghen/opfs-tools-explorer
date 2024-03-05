@@ -32,6 +32,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc -p tsconfig.json --declaration --emitDeclarationOnly",
+    "build:demo": "vite build -c vite.demo.config.ts",
     "prepublishOnly": "yarn build"
   },
   "browserslist": [
