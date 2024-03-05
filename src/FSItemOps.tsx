@@ -71,10 +71,10 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
       const newDir = await dir(id).moveTo(dir('/.Trash'));
       newData.push(...(await dirTree(newDir)).map((it) => fsItem2TreeNode(it)));
     } else {
-      const sameNameInTrush = await file('/.Trash/' + file(id).name).exists();
+      const sameNameInTrash = await file('/.Trash/' + file(id).name).exists();
       const newFile = await file(id).moveTo(dir('/.Trash'));
       onChange?.('delete', fsItem2TreeNode(newFile));
-      if (!sameNameInTrush) {
+      if (!sameNameInTrash) {
         newData.push(fsItem2TreeNode(newFile));
       }
     }
