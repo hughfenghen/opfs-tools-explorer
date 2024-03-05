@@ -38,9 +38,6 @@ function dragElement(el: HTMLElement): () => void {
   let touchStartY = 0;
   let maxLeft = 100;
   let maxTop = 100;
-  // parent 偏移
-  let parentX = 0;
-  let parentY = 0;
 
   const onStart = ({
     clientX,
@@ -56,8 +53,14 @@ function dragElement(el: HTMLElement): () => void {
     elStartX = x;
     elStartY = y;
 
-    maxLeft = ((window.innerWidth - width) / window.innerWidth) * 100;
-    maxTop = ((window.innerHeight - height) / window.innerHeight) * 100;
+    maxLeft =
+      ((document.documentElement.clientWidth - width) /
+        document.documentElement.clientWidth) *
+      100;
+    maxTop =
+      ((document.documentElement.clientHeight - height) /
+        document.documentElement.clientHeight) *
+      100;
   };
 
   const onMove = ({
@@ -70,9 +73,12 @@ function dragElement(el: HTMLElement): () => void {
     const curX = clientX;
     const curY = clientY;
     const left =
-      ((elStartX + curX - touchStartX - parentX) / window.innerWidth) * 100;
+      ((elStartX + curX - touchStartX) / document.documentElement.clientWidth) *
+      100;
     const top =
-      ((elStartY + curY - touchStartY - parentY) / window.innerHeight) * 100;
+      ((elStartY + curY - touchStartY) /
+        document.documentElement.clientHeight) *
+      100;
     el.style.left = `${clamp(left, 0, maxLeft)}%`;
     el.style.top = `${clamp(top, 0, maxTop)}%`;
   };
@@ -88,7 +94,12 @@ function dragElement(el: HTMLElement): () => void {
 
   let moved = false;
   const onMouseMove = (evt: MouseEvent): void => {
-    moved = true;
+    if (
+      Math.abs(evt.clientX - touchStartX) > 10 ||
+      Math.abs(evt.clientY - touchStartY) > 10
+    ) {
+      moved = true;
+    }
 
     evt.preventDefault();
     evt.stopPropagation();
