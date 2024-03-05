@@ -120,28 +120,30 @@ function App() {
               Refresh
             </Button>
           </div>
-          <Tree
-            tree={treeData}
-            rootId={'/'}
-            render={(node, options) => (
-              <CustomNode
-                node={node as NodeModel<CustomData>}
-                {...options}
-                onPreview={setPreviewNode}
-              />
-            )}
-            dragPreviewRender={(
-              monitorProps: DragLayerMonitorProps<CustomData>
-            ) => <CustomDragPreview monitorProps={monitorProps} />}
-            onDrop={(_, changeData) => {
-              handleDrop(changeData as DropOptions<CustomData>);
-            }}
-            classes={{
-              root: styles.treeRoot,
-              draggingSource: styles.draggingSource,
-              dropTarget: styles.dropTarget,
-            }}
-          />
+          <div className={styles.treeWrap}>
+            <Tree
+              tree={treeData}
+              rootId={'/'}
+              render={(node, options) => (
+                <CustomNode
+                  node={node as NodeModel<CustomData>}
+                  {...options}
+                  onPreview={setPreviewNode}
+                />
+              )}
+              dragPreviewRender={(
+                monitorProps: DragLayerMonitorProps<CustomData>
+              ) => <CustomDragPreview monitorProps={monitorProps} />}
+              onDrop={(_, changeData) => {
+                handleDrop(changeData as DropOptions<CustomData>);
+              }}
+              classes={{
+                root: styles.treeRoot,
+                draggingSource: styles.draggingSource,
+                dropTarget: styles.dropTarget,
+              }}
+            />
+          </div>
           {previewNode != false && (
             <FilePreviewer
               tree={treeData}

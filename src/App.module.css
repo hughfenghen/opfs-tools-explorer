@@ -2,6 +2,13 @@
   height: 100%;
   position: relative;
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.treeWrap {
+  flex: 1;
+  overflow: auto;
 }
 
 .app ul {
