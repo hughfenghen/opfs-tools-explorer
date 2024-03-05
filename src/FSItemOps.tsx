@@ -146,11 +146,14 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
           )}
         </IconButton>
       </div>
-      <div className={styles.actionButton}>
-        <IconButton size="small" onClick={handleCopy}>
-          <FileCopy fontSize="small" />
-        </IconButton>
-      </div>
+      {node.id !== '/.Trash' && (
+        <div className={styles.actionButton}>
+          <IconButton size="small" onClick={handleCopy}>
+            <FileCopy fontSize="small" />
+          </IconButton>
+        </div>
+      )}
+
       {node.data.kind === 'file' && (
         <div className={styles.actionButton}>
           <IconButton
