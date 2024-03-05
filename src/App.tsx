@@ -63,6 +63,7 @@ function App() {
   };
 
   const refreshTree = async () => {
+    await dir('/.Trash').create();
     const tree = [fsItem2TreeNode(dir('/'))];
     await getInitData('/', tree);
     setTreeData(tree);

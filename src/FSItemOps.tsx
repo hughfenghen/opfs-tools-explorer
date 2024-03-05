@@ -1,6 +1,7 @@
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import { Delete, FileCopy } from '@mui/icons-material';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import { CustomData, NodeModel } from './types';
 import styles from './FSItemOps.module.css';
@@ -54,7 +55,7 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
     const deleteIds = getDescendants(treeData, id).map((node) => node.id);
 
     const opNode = treeData.find((it) => it.id === id);
-    if (opNode == null) return
+    if (opNode == null) return;
     // 删除垃圾筐操作，是清空垃圾筐，垃圾筐本身不能删除
     if (id !== '/.Trash') deleteIds.push(id);
 
@@ -87,8 +88,8 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
   const handleCopy = async () => {
     const lastId = getLastId(treeData);
     const targetNode = treeData.find((n) => n.id === id);
-    if (targetNode == null) return
-    
+    if (targetNode == null) return;
+
     const descendants = getDescendants(treeData, id);
     const partialTree = descendants.map((node: NodeModel<CustomData>) => ({
       ...node,
@@ -102,7 +103,7 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
     const fileName = targetNode.text.includes('.')
       ? targetNode.text.split('.').slice(0, -1).join('')
       : targetNode.text;
-    
+
     const copyedCnt = treeData.filter(
       (n) =>
         n.parent === targetNode.parent &&
@@ -117,7 +118,7 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
     const newNode = {
       ...targetNode,
       text: newName,
-      id: joinPath((targetNode.parent), newName),
+      id: joinPath(targetNode.parent, newName),
     };
     const childrenNodes = [];
     if (targetNode.data.kind === 'dir') {
@@ -138,7 +139,11 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
     <>
       <div className={styles.actionButton}>
         <IconButton size="small" onClick={handleDelete}>
-          <Delete fontSize="small" />
+          {node.id === '/.Trash' ? (
+            <DeleteOutlineIcon fontSize="small" />
+          ) : (
+            <Delete fontSize="small" />
+          )}
         </IconButton>
       </div>
       <div className={styles.actionButton}>
