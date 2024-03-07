@@ -46,6 +46,7 @@
     "@types/react-dom": "^18.2.19",
     "typescript": "^5.3.3",
     "vite": "^5.1.3",
-    "vite-plugin-css-injected-by-js": "^3.4.0"
+    "vite-plugin-css-injected-by-js": "^3.4.0",
+    "vite-plugin-radar": "^0.9.3"
   }
 }

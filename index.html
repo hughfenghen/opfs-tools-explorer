@@ -28,15 +28,11 @@
 <body>
   <div style="text-align: center; margin-top: 20px;">
     <button id="add-test-file">Add Test Files</button>
-    <p><strong>then refresh in explorer</strong></p>
+    <p>then <strong style="color: #1976d2;">REFRESH</strong> in explorer</p>
     <p>Powered by <a href="https://github.com/hughfenghen/opfs-tools">opfs-tools</a>, <a
         href="https://github.com/hughfenghen/opfs-tools-explorer">opfs-tools-explorer</a>
     </p>
   </div>
-  <script type="module">
-    import { init } from './src/index.tsx'
-    init()
-  </script>
   <script type="module">
     import { write, dir } from 'opfs-tools'
     async function initFiles() {
@@ -45,7 +41,15 @@
       await write('/opfs-tools/dir2/file1', 'file');
       await dir('/.Trash').create();
     }
-    document.getElementById('add-test-file').addEventListener('click', initFiles);
+    initFiles()
+
+    document.getElementById('add-test-file').addEventListener('click', () => {
+      initFiles()
+    });
+  </script>
+  <script type="module">
+    import { init } from './src/index.tsx'
+    init({ defaultShow: true })
   </script>
 </body>
 

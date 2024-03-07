@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import App from './App';
 import styles from './Entry.module.css';
 
-export const Entry: React.FC<{}> = () => {
+export const Entry: React.FC<{ defaultShow?: boolean }> = ({ defaultShow }) => {
   const iconElRef = useRef<HTMLDivElement>(null);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(defaultShow ?? false);
 
   useEffect(() => {
     if (iconElRef.current == null) return;
