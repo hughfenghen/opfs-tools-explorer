@@ -13,14 +13,24 @@
       margin: 0;
     }
 
-    #add-test-file {
-      width: 250px;
+    #add-test-file,
+    #remove-test-file {
+      width: 280px;
       height: 60px;
       font-size: 30px;
       color: #1976d2;
       cursor: pointer;
       border: 1px solid #ddd;
       border-radius: 10px;
+    }
+
+    #remove-test-file {
+      color: crimson;
+    }
+
+    #desc {
+      opacity: 0;
+      transition: opacity 1s;
     }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MC335K4KV6"></script>
@@ -37,24 +47,40 @@
 <body>
   <div style="text-align: center; margin-top: 20px;">
     <button id="add-test-file">Add Test Files</button>
-    <p>then <strong style="color: #1976d2;">REFRESH</strong> in explorer</p>
+    <button id="remove-test-file">Remove Test Files</button>
+    <p id="desc">then <strong>REFRESH</strong> in explorer</p>
     <p>Powered by <a href="https://github.com/hughfenghen/opfs-tools">opfs-tools</a>, <a
         href="https://github.com/hughfenghen/opfs-tools-explorer">opfs-tools-explorer</a>
     </p>
   </div>
   <script type="module">
     import { write, dir } from 'opfs-tools'
+
     async function initFiles() {
       await write('/opfs-tools/dir1/file1', 'file');
       await write('/opfs-tools/dir1/file2', 'file');
       await write('/opfs-tools/dir2/file1', 'file');
       await dir('/.Trash').create();
     }
-    initFiles()
 
-    document.getElementById('add-test-file').addEventListener('click', () => {
-      initFiles()
+    document.getElementById('add-test-file').addEventListener('click', async () => {
+      await initFiles()
+      tip()
     });
+    document.getElementById('remove-test-file').addEventListener('click', async () => {
+      await dir('/opfs-tools/').moveTo(dir('/.Trash'))
+      tip()
+    });
+
+    const descEl = document.getElementById('desc')
+    let timer
+    function tip() {
+      clearTimeout(timer)
+      descEl.style.opacity = '1'
+      timer = setTimeout(() => {
+        descEl.style.opacity = '0'
+      }, 2500)
+    }
   </script>
   <script type="module">
     import { init } from './src/index.tsx'
