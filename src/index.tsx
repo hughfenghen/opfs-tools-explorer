@@ -5,7 +5,7 @@ import { Entry } from './Entry';
 
 export const OTExplorerComp = App;
 
-export function init({ defaultShow }: { defaultShow?: boolean }) {
+export function init({ defaultShow }: { defaultShow?: boolean } = {}) {
   const container = document.createElement('div');
   container.style.zIndex = '10000';
   container.style.position = 'fixed';
