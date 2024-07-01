@@ -42,15 +42,19 @@ export const FilePreviewer: React.FC<Props> = ({ node, onClose }) => {
 
 const FileContent: React.FC<{ id: string }> = ({ id }) => {
   const [text, setText] = useState('');
+  const [size, setSize] = useState(0);
   const fileType = detectFileType(id);
 
   useEffect(() => {
     setText('');
     (async () => {
+      const f = file(id);
       if (['video', 'audio', 'image'].includes(fileType)) {
-        setText(URL.createObjectURL(new Blob([await file(id).arrayBuffer()])));
+        setText(URL.createObjectURL(new Blob([await f.arrayBuffer()])));
       } else {
-        setText(await file(id).text());
+        const size = await f.getSize();
+        setSize(size);
+        if (size < 5e3) setText(await f.text());
       }
     })();
 
@@ -64,27 +68,30 @@ const FileContent: React.FC<{ id: string }> = ({ id }) => {
       {fileType === 'video' && <video controls src={text}></video>}
       {fileType === 'audio' && <audio controls src={text}></audio>}
       {fileType === 'image' && <img src={text}></img>}
-      {fileType === 'text' && (
-        <>
-          <textarea
-            className={styles.textarea}
-            value={text}
-            onChange={(evt) => {
-              setText(evt.target.value);
-            }}
-          />
-          <div className={styles.saveBtn}>
-            <Button
-              variant="contained"
-              onClick={async () => {
-                await write(id, text);
+      {fileType === 'text' &&
+        (size > 5e6 ? (
+          <div>too large</div>
+        ) : (
+          <>
+            <textarea
+              className={styles.textarea}
+              value={text}
+              onChange={(evt) => {
+                setText(evt.target.value);
               }}
-            >
-              Save
-            </Button>
-          </div>
-        </>
-      )}
+            />
+            <div className={styles.saveBtn}>
+              <Button
+                variant="contained"
+                onClick={async () => {
+                  await write(id, text);
+                }}
+              >
+                Save
+              </Button>
+            </div>
+          </>
+        ))}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import { Delete, FileCopy } from '@mui/icons-material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -50,6 +50,12 @@ async function downloadFile(f: ReturnType<typeof file>) {
 export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
   const [treeData, setTreeData] = useAtom(treeDataAtom);
   const id = node.id;
+  const [size, setSize] = useState(0);
+  useEffect(() => {
+    (async () => {
+      setSize(await file(id).getSize());
+    })();
+  }, []);
 
   const handleDelete = async () => {
     const deleteIds = getDescendants(treeData, id).map((node) => node.id);
@@ -136,7 +142,7 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
   };
 
   return (
-    <>
+    <div className={styles.actionWrap}>
       <div className={styles.actionButton}>
         <IconButton size="small" onClick={handleDelete}>
           {node.id === '/.Trash' ? (
@@ -166,6 +172,10 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
           </IconButton>
         </div>
       )}
-    </>
+
+      {node.data.kind === 'file' && (
+        <div className={styles.actionButton}>{(size / 1000).toFixed(2)} kb</div>
+      )}
+    </div>
   );
 };

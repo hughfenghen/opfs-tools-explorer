@@ -14,10 +14,6 @@
   flex-direction: column;
 }
 
-.info {
-  font-weight: bold;
-}
-
 .closeIconWrap {
   position: absolute;
   top: 4px;
