@@ -53,7 +53,9 @@ export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
   const [size, setSize] = useState(0);
   useEffect(() => {
     (async () => {
-      setSize(await file(id).getSize());
+      if (!node.droppable) {
+        setSize(await file(id).getSize());
+      }
     })();
   }, []);
 
