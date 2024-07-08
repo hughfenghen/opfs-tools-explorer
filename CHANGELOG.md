@@ -1,5 +1,11 @@
 # opfs-tools-explorer
 
+## 1.0.11
+
+### Patch Changes
+
+- 4c1cbdc: chore: upgrade opfs-tools
+
 ## 1.0.10
 
 ### Patch Changes
