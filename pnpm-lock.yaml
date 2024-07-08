@@ -30,8 +30,8 @@ importers:
         specifier: ^4.0.4
         version: 4.0.4(@emotion/react@11.9.0(@types/react@18.3.3)(react@18.1.0))(@emotion/styled@11.8.1(@emotion/react@11.9.0(@types/react@18.3.3)(react@18.1.0))(@types/react@18.3.3)(react@18.1.0))(@mui/material@5.6.4(@emotion/react@11.9.0(@types/react@18.3.3)(react@18.1.0))(@emotion/styled@11.8.1(@emotion/react@11.9.0(@types/react@18.3.3)(react@18.1.0))(@types/react@18.3.3)(react@18.1.0))(@types/react@18.3.3)(react-dom@18.1.0(react@18.1.0))(react@18.1.0))(@types/react@18.3.3)(react-dom@18.1.0(react@18.1.0))(react@18.1.0)
       opfs-tools:
-        specifier: ^0.5.6
-        version: 0.5.6
+        specifier: ^0.5.7
+        version: 0.5.7
       react:
         specifier: 18.1.0
         version: 18.1.0
@@ -971,8 +971,8 @@ packages:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
 
-  opfs-tools@0.5.6:
-    resolution: {integrity: sha512-HPz33sPTpBE0TujNyT9v2FjnsbCbNeIIx2iv+OrFSBWnM0uHCd4lWBwI6IgsUZujWnt5Sr6Wd/pASvWWpzrXxA==}
+  opfs-tools@0.5.7:
+    resolution: {integrity: sha512-jxOizmfGfEWw4GleqDuF8USejoJU78Hl1mb09J9PD+EZyPcEoDUqlb1aN47A/SJ84yWEc7xvrsLBPTeJm9Z4fg==}
 
   os-tmpdir@1.0.2:
     resolution: {integrity: sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==}
@@ -2232,7 +2232,7 @@ snapshots:
 
   object-assign@4.1.1: {}
 
-  opfs-tools@0.5.6: {}
+  opfs-tools@0.5.7: {}
 
   os-tmpdir@1.0.2: {}
 
