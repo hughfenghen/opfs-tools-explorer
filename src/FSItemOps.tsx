@@ -37,14 +37,11 @@ const getLastId = (treeData: NodeModel[]) => {
 };
 
 async function downloadFile(f: ReturnType<typeof file>) {
-  const url = URL.createObjectURL(new Blob([await f.arrayBuffer()]));
-  const aEl = document.createElement('a');
-  document.body.appendChild(aEl);
-  aEl.setAttribute('href', url);
-  aEl.setAttribute('download', f.name);
-  aEl.setAttribute('target', '_self');
-  aEl.click();
-  aEl.remove();
+  const fh = (await (window as any).showSaveFilePicker({
+    suggestedName: f.name,
+    startIn: 'downloads',
+  })) as FileSystemFileHandle;
+  (await f.stream()).pipeTo(await fh.createWritable());
 }
 
 export const FSItemOps: React.FC<Props> = ({ node, onChange }) => {
