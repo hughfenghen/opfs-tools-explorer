@@ -65,7 +65,13 @@ const FileContent: React.FC<{ id: string }> = ({ id }) => {
 
   return (
     <>
-      {fileType === 'video' && <video controls src={text}></video>}
+      {fileType === 'video' && (
+        <video
+          style={{ width: '100%', height: '100%' }}
+          controls
+          src={text}
+        ></video>
+      )}
       {fileType === 'audio' && <audio controls src={text}></audio>}
       {fileType === 'image' && <img src={text}></img>}
       {fileType === 'text' &&
