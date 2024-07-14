@@ -1,5 +1,11 @@
 # opfs-tools-explorer
 
+## 1.0.13
+
+### Patch Changes
+
+- c19f00e: fix: preview video should 100% height
+
 ## 1.0.12
 
 ### Patch Changes
