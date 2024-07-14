@@ -67,7 +67,7 @@ const FileContent: React.FC<{ id: string }> = ({ id }) => {
     <>
       {fileType === 'video' && (
         <video
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: '100%', height: '100%', overflow: 'hidden' }}
           controls
           src={text}
         ></video>
