@@ -1,5 +1,11 @@
 # opfs-tools-explorer
 
+## 1.0.14
+
+### Patch Changes
+
+- b6f1810: fix: not show video controls
+
 ## 1.0.13
 
 ### Patch Changes
