@@ -1,5 +1,11 @@
 # opfs-tools-explorer
 
+## 1.0.15
+
+### Patch Changes
+
+- 975cac7: chore: upgrade deps
+
 ## 1.0.14
 
 ### Patch Changes
