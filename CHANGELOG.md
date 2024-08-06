@@ -1,5 +1,11 @@
 # opfs-tools-explorer
 
+## 1.1.0
+
+### Minor Changes
+
+- 3ccec1b: feat: hold shift, permanently deleted
+
 ## 1.0.15
 
 ### Patch Changes
