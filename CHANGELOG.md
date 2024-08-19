@@ -1,5 +1,11 @@
 # opfs-tools-explorer
 
+## 1.1.1
+
+### Patch Changes
+
+- a1f73bb: chore: upgrade deps
+
 ## 1.1.0
 
 ### Minor Changes
