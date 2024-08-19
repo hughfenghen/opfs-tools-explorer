@@ -1,5 +1,11 @@
 # opfs-tools-explorer
 
+## 1.1.2
+
+### Patch Changes
+
+- 00b140d: chore: upgrade deps
+
 ## 1.1.1
 
 ### Patch Changes
