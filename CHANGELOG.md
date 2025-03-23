@@ -1,5 +1,11 @@
 # opfs-tools-explorer
 
+## 1.1.4
+
+### Patch Changes
+
+- aa43c6c: fix: @emotion/react loaded twice #12
+
 ## 1.1.3
 
 ### Patch Changes
