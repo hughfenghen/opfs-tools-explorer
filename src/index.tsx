@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import { Entry } from './Entry';
 
-export const OTExplorerComp = App;
+export { App as OTExplorerComp };
 
 export function init({ defaultShow }: { defaultShow?: boolean } = {}) {
   const container = document.createElement('div');
