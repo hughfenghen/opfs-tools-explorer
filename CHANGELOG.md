@@ -1,5 +1,11 @@
 # opfs-tools-explorer
 
+## 1.1.5
+
+### Patch Changes
+
+- 167c481: fix: React.createElement: type is invalid
+
 ## 1.1.4
 
 ### Patch Changes
