@@ -1,5 +1,11 @@
 # opfs-tools-explorer
 
+## 1.1.6
+
+### Patch Changes
+
+- 9870a3d: fix: damn ES and CommonJS compatibility issues
+
 ## 1.1.5
 
 ### Patch Changes
