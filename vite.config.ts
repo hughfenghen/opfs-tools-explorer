@@ -21,7 +21,7 @@ const createConfig = (format: 'es' | 'umd', emptyOutDir: boolean) => ({
     rollupOptions: {
       external:
         // es 排除所有非相对路径的导入（即第三方库）
-        format === 'es' ? ['react', 'react-dom'] : [],
+        format === 'es' ? ['react', 'react-dom', '@emotion/react', '@emotion/styled'] : [],
     },
   },
 });
